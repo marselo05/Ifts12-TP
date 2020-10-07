@@ -17,3 +17,24 @@
     padding: .2em 0;
     align-items: center;
 }
+.formulario .formulario-fechas__box 
+    .formulario-fechas__box--dias {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        height: 45px;
+    }
+.formulario .formulario-fechas__box
+    .formulario-fechas__box--horario {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 45px;
+    }
+.formulario .formulario-fechas__box    
+    .formulario-fechas__box--estado-dia {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 45px;   
+    }
