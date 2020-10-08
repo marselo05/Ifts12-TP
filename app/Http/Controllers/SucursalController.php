@@ -107,7 +107,6 @@ class SucursalController extends Controller
      */
     public function edit($id)
     {
-        
         // $sucursales = Sucursal::where('id', $id)
         //                 ->with('sucursales_dias')
         //                 ->get();
@@ -127,7 +126,6 @@ class SucursalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $request->validate([
             'nombre' => 'required',
             'direccion' => 'required',
@@ -139,22 +137,23 @@ class SucursalController extends Controller
         $sucursalActualizada->direccion    = $request->direccion;
         $sucursalActualizada->telefono     = $request->telefono;
         $sucursalActualizada->save();
-        //dd( $sucursalActualizada->sucursales_dias );
-        
-        foreach ( $request->dias as $dia )
+        for ($i=1; $i< (count($request->dias) +1); $i++ )
         {
-            $sucursalDiaNueva                      = $sucursalActualizada->sucursales_dias->where('id', $dia);
-            $sucursalDiaNueva->dia                 = $dia;
-            $sucursalDiaNueva->hora_apertura       = $request->hora_apertura[ $dia - 1 ];  
-            $sucursalDiaNueva->hora_cierre         = $request->hora_cierre[ $dia - 1 ];
+         
+            $sucursalDiaNueva                      = SucursalesDias::find( $request->dias[$i - 1] );
+            $sucursalDiaNueva->hora_apertura       = $request->hora_apertura[$i -1];  
+            $sucursalDiaNueva->hora_cierre         = $request->hora_cierre[$i -1];
             $sucursalDiaNueva->id_sucursal         = $id;
             $sucursalDiaNueva->id_sucursal_dia     = $id;
-            $sucursalDiaNueva->estado              = $request->estado;
             
-            $sucursalDiaNueva->save();
-        }
+            $sucursalDiaNueva->estado  = 0;
+            for ($ii=0; $ii < count($request->estado_dias); $ii++) 
+                if ( ( $i ) ==  $request->estado_dias[$ii] ) 
+                    $sucursalDiaNueva->estado  = 1;
 
-        return back()->with('mensaje', 'Nota editada!');
+           $sucursalDiaNueva->save();
+        }
+        return back()->with('mensaje', 'Sucursal editada!');
     }
 
     /**
