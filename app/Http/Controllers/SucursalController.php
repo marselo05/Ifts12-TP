@@ -164,6 +164,12 @@ class SucursalController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sucursalEliminar = Sucursal::findOrFail($id);
+        $sucursalEliminar->delete();
+
+        $sucursalHorarioEliminar = SucursalesDias::where('id_sucursal', $id);
+        $sucursalHorarioEliminar->delete();
+
+        return back()->with('mensaje', 'Sucursal Eliminada');
     }
 }

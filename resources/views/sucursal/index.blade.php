@@ -39,7 +39,7 @@
                         <td>{{ $sucursal->estado }}</td>
                         <td>
                             <a href="{{ route('sucursal.edit', $sucursal) }}" class="btn btn-warning btn-sm">Editar</a>
-                            <form action="" class="d-inline" method="POST">
+                            <form action="{{ route('sucursal.delete', $sucursal) }}" class="d-inline" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>

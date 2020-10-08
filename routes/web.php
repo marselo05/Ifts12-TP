@@ -26,3 +26,4 @@ Route::get('/sucursal/create', 'SucursalController@create')->name('sucursal.crea
 Route::post('/sucursal/store', 'SucursalController@store')->name('sucursal.store');
 Route::get('/sucursal/edit/{id}', 'SucursalController@edit')->name('sucursal.edit');
 Route::put('/sucursal/edit/{id}', 'SucursalController@update')->name('sucursal.update');
+Route::delete('/sucursal/delete/{id}', 'SucursalController@destroy')->name('sucursal.delete');
