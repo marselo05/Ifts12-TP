@@ -61,9 +61,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="{{ route('especialidad.index') }}">
                                 <span data-feather="shopping-cart"></span>
-                                Estudios
+                                Especialidades
                             </a>
                         </li>
                         <li class="nav-item">

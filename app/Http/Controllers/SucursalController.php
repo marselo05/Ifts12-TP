@@ -61,7 +61,7 @@ class SucursalController extends Controller
             $sucursalNueva              = new Sucursal;
             $sucursalNueva->nombre      = $request->nombre;
             $sucursalNueva->direccion   = $request->direccion;
-            $sucursalNueva->direccion   = $request->telefono;
+            $sucursalNueva->telefono    = $request->telefono;
             $sucursalNueva->estado      = $request->estado;
             $sucursalNueva->save();
         
@@ -69,21 +69,23 @@ class SucursalController extends Controller
             $sucursalNuevaId = Sucursal::latest('id')->first();
 
         /* CARGA DIA Y HORARIO DE EN LA SUCURSAL SELECCINADA */
-            foreach ( $request->dias as $dia )
+            for ($i=1; $i< (count($request->dias) +1); $i++ )
             {
-                $sucursalDiaNueva                      = new App\SucursalesDias;
-                $sucursalDiaNueva->dia                 = $dia;
-                $sucursalDiaNueva->hora_apertura       = $request->hora_apertura[$dia - 1];   
-                $sucursalDiaNueva->hora_cierre         = $request->hora_cierre[$dia -1 ];
+             
+                $sucursalDiaNueva                      = new SucursalesDias;
+                $sucursalDiaNueva->dia                 = $request->dias[$i -1];
+                $sucursalDiaNueva->hora_apertura       = $request->hora_apertura[$i -1];  
+                $sucursalDiaNueva->hora_cierre         = $request->hora_cierre[$i -1];
                 $sucursalDiaNueva->id_sucursal         = $sucursalNuevaId->id;
                 $sucursalDiaNueva->id_sucursal_dia     = $sucursalNuevaId->id;
-                // si encuentra el valor guarda el estado en uno 
-                for ( $i=0; $i < count($request->estado_dias); $i++ ) 
-                    ($request->estado_dias[$i] == $dia ) ? $sucursalDiaNueva->estado = 1 : $sucursalDiaNueva->estado = 0;
                 
+                $sucursalDiaNueva->estado  = 0;
+                for ($ii=0; $ii < count($request->estado_dias); $ii++) 
+                    if ( ( $i ) ==  $request->estado_dias[$ii] )
+                        $sucursalDiaNueva->estado  = 1;
+
                 $sucursalDiaNueva->save();
             }
-            
         /* VUELVO A LA PANTALLA CREATE CON UN MENSAJES */
         return back()->with('mensaje', 'Sucursal agregada');
     }
@@ -107,11 +109,7 @@ class SucursalController extends Controller
      */
     public function edit($id)
     {
-        // $sucursales = Sucursal::where('id', $id)
-        //                 ->with('sucursales_dias')
-        //                 ->get();
         $sucursales = Sucursal::findOrFail($id);
-        // dd($sucursales->sucursales_dias[0]->dia);
         $semana = [ 'semana','Lunes','Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
         //
         return view('sucursal.edit', compact('sucursales', 'semana'));
@@ -137,6 +135,7 @@ class SucursalController extends Controller
         $sucursalActualizada->direccion    = $request->direccion;
         $sucursalActualizada->telefono     = $request->telefono;
         $sucursalActualizada->save();
+        
         for ($i=1; $i< (count($request->dias) +1); $i++ )
         {
          
@@ -170,6 +169,6 @@ class SucursalController extends Controller
         $sucursalHorarioEliminar = SucursalesDias::where('id_sucursal', $id);
         $sucursalHorarioEliminar->delete();
 
-        return back()->with('mensaje', 'Sucursal Eliminada');
+        return back()->with('mensaje', 'Sucursal eliminada.');
     }
 }
