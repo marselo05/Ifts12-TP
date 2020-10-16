@@ -17,7 +17,7 @@
             <div class="alert alert-success">{{ session('mensaje') }}</div>
         @endif
 
-        <form method="POST" action="{{ route('sucursal.store') }}" id="formulario_sucursal" class="formulario">
+        <form method="POST" action="{{ route('sucursal.store') }}" id="formulario_sucursal" class="formulario" enctype="multipart/form-data">
             @csrf
 
             <!-- REQUERIMIENTO DEL FORMULARIO -->
@@ -58,6 +58,12 @@
                         <h6>Teléfono</h6>
                     </label>
                     <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Ej: 4 554 4444" value="{{ old('telefono') }}">
+                </div>
+                <div>
+                    <label>
+                        <h6>Imagen</h6>
+                    </label>
+                    <input type="file" name="imagen">
                 </div>
             </div>
 

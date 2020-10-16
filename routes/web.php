@@ -20,6 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/sucursales', 'HomeController@sucursales')->name('sucursales');
+Route::get('/cartilla', 'HomeController@cartilla')->name('cartilla');
 
 // Sucursales
 	Route::get('/sucursal', 'SucursalController@index')->name('sucursal.index');
@@ -36,3 +38,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 	Route::get('/especialidad/edit/{id}', 'EspecialidadController@edit')->name('especialidad.edit');
 	Route::put('/especialidad/edit/{id}', 'EspecialidadController@update')->name('especialidad.update');
 	Route::delete('/especialidad/delete/{id}', 'EspecialidadController@destroy')->name('especialidad.delete');
+
+// Coberturas (Obras sociales y Planes)
+	Route::get('/cobertura', 'CoberturaController@index')->name('cobertura.index');
+	Route::get('/cobertura/create', 'CoberturaController@create')->name('cobertura.create');
+	Route::get('/cobertura/store', 'CoberturaController@store')->name('cobertura.store');
+	Route::get('/cobertura/edit/{id}', 'CoberturaController@edit')->name('cobertura.edit');
+
+// Usuarios
+
+// Tipo de orden 
+
+// TABLA PIBOT entre [SUCURSAL, ESPECIALDAD] y SALA según sucursal
+// Turnos	

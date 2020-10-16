@@ -53,8 +53,18 @@ class SucursalController extends Controller
             'dias' => 'required',
             'hora_apertura' => 'required',
             'hora_cierre' => 'required',
-            'estado' => 'required'
+            'estado' => 'required',
+            'imagen' => 'required'
         ]);
+
+
+        if ($request->hasFile('imagen')) 
+        {
+            $file       = $request->file('imagen'); 
+            $name       = time().$file->getClientOriginalName();
+            $file->move(public_path().'/images/sucursal', $name);
+           // return $name;
+        }
         /******************************************************************/
         /* CARGAR LOS DIAS Y HORARIO EN LA TABLA SUCURSALES_DIAS_HORARIOS */ 
         /******************************************************************/
@@ -62,6 +72,7 @@ class SucursalController extends Controller
             $sucursalNueva->nombre      = $request->nombre;
             $sucursalNueva->direccion   = $request->direccion;
             $sucursalNueva->telefono    = $request->telefono;
+            $sucursalNueva->imagen      = $name;
             $sucursalNueva->estado      = $request->estado;
             $sucursalNueva->save();
         

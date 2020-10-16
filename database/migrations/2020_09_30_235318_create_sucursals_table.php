@@ -18,6 +18,7 @@ class CreateSucursalsTable extends Migration
             $table->string('nombre')->nullable();
             $table->string('direccion')->nullable();
             $table->integer('telefono')->nullable();
+            $table->text('imagen')->nullable();
             $table->integer('estado')->default(0);
             $table->timestamps();
         });

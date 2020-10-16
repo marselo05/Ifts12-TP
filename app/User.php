@@ -36,4 +36,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // 
+    public function obraSocial() {
+        return $this->belongsToMany('\App\ObraSocial','cobertura_usuarios')
+                    ->withPivot('obra_social_id', 'status');
+    }
+
+    public function plan() {
+        return $this->belongsToMany('\App\Plan','cobertura_usuarios')
+                    ->withPivot('plan_id', 'status');
+    }    
 }

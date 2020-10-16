@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function sucursales()
+    {
+        return view('sucursales');
+    }
+
+    public function cartilla()
+    {
+        return view('cartilla');
+    }
 }

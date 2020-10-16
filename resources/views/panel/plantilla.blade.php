@@ -26,18 +26,28 @@
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/panel/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/panel/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/panel/vanilla-dataTables.css') }}" rel="stylesheet">
+
+    <script src="{{ asset('js/panel/vanilla-dataTables.js') }}"></script>
     
 </head>
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Company name</a>
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Clinica IFTS12</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" style="display: none;">
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
+                <a class="nav-link" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                    {{ __('Cerrar la sesión') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </li>
         </ul>
     </nav>
@@ -51,7 +61,7 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="#">
                                 <span data-feather="home"></span>
-                                Dashboard <span class="sr-only">(current)</span>
+                                Panel <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -67,18 +77,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="users"></span>
-                                Customers
+                            <a class="nav-link" href="{{ route('cobertura.index') }}">
+                                <span data-feather="coberturas"></span>
+                                Coberturas
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" style="display: none;">
                             <a class="nav-link" href="#">
                                 <span data-feather="bar-chart-2"></span>
                                 Reports
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" style="display: none;">
                             <a class="nav-link" href="#">
                                 <span data-feather="layers"></span>
                                 Integrations
@@ -86,13 +96,13 @@
                         </li>
                     </ul>
 
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted" style="display: none !important;">
                         <span>Saved reports</span>
                         <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
                             <span data-feather="plus-circle"></span>
                         </a>
                     </h6>
-                    <ul class="nav flex-column mb-2">
+                    <ul class="nav flex-column mb-2" style="display: none;">
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                             <span data-feather="file-text"></span>
@@ -136,5 +146,6 @@
     {{-- <script src="{{ asset('js/panel/Chart.min.js') }}"></script> --}}
     <script src="{{ asset('js/panel/feather.min.js') }}"></script>
     {{-- <script src="{{ asset('js/panel/dashboard.js') }}"></script> --}}
+    
 </body>
 </html>
