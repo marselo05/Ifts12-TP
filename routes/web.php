@@ -22,6 +22,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/sucursales', 'HomeController@sucursales')->name('sucursales');
 Route::get('/cartilla', 'HomeController@cartilla')->name('cartilla');
+Route::get('/nosotros', 'HomeController@nosotros')->name('nosotros');
+Route::get('/contactenos', 'HomeController@contactenos')->name('contactenos');
 
 // Sucursales
 	Route::get('/sucursal', 'SucursalController@index')->name('sucursal.index');
@@ -42,7 +44,7 @@ Route::get('/cartilla', 'HomeController@cartilla')->name('cartilla');
 // Coberturas (Obras sociales y Planes)
 	Route::get('/cobertura', 'CoberturaController@index')->name('cobertura.index');
 	Route::get('/cobertura/create', 'CoberturaController@create')->name('cobertura.create');
-	Route::get('/cobertura/store', 'CoberturaController@store')->name('cobertura.store');
+	Route::post('/cobertura/store', 'CoberturaController@store')->name('cobertura.store');
 	Route::get('/cobertura/edit/{id}', 'CoberturaController@edit')->name('cobertura.edit');
 
 // Usuarios

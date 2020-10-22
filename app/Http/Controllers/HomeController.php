@@ -35,4 +35,9 @@ class HomeController extends Controller
     {
         return view('cartilla');
     }
+
+    public function contactenos()
+    {
+        return view('contactenos');
+    }
 }

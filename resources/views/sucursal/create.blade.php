@@ -59,7 +59,7 @@
                     </label>
                     <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Ej: 4 554 4444" value="{{ old('telefono') }}">
                 </div>
-                <div>
+                <div class="form-group col-md-12">
                     <label>
                         <h6>Imagen</h6>
                     </label>

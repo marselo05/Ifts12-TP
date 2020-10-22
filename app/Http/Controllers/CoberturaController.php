@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
-use App\CoberturaUsuario;
+use App\Cobertura;
+use App\ObraSocial;
+use App\Plan;
 
 class CoberturaController extends Controller
 {
@@ -77,7 +79,122 @@ class CoberturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd( $request->all() );
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'required',
+        ]);
+
+        // Cobertura
+            $nuevaObraSocial                 = new ObraSocial();
+                $nuevaObraSocial->nombre         = $request->nombre;
+                $nuevaObraSocial->descripcion    = $request->descripcion;
+                $nuevaObraSocial->estado         = $request->estado;
+            $nuevaObraSocial->save();
+
+            $nuevaObraSocialId = ObraSocial::latest('id')->first();
+
+
+        // Planes
+            if ($request->estado_plan_1 != null) 
+            {
+                // dd($nuevaObraSocialId);
+                $nuevoPlan                  = new Plan();
+                $nuevoPlan->nombre          = $request->nombre_plan_1;
+                $nuevoPlan->descripcion     = $request->descripcion_plan_1;
+                $nuevoPlan->estado          = $request->estado_plan_1;
+                $nuevoPlan->save();
+
+                $nuevoPlanId = Plan::latest('id')->first();
+
+            }
+
+            $nuevaCobertura                  = new Cobertura();
+                $nuevaCobertura->status          = $request->estado;
+                $nuevaCobertura->obra_social_id  = $nuevaObraSocialId;
+                $nuevaCobertura->plan_id         = $nuevoPlanId;
+            $nuevaCobertura->save();
+            // else if ($request->estado_plan_2 != null) 
+            // {
+            //     $nuevoPlan                  = new Plan();
+            //     $nuevoPlan->nombre          = $request->nombre_plan_2;
+            //     $nuevoPlan->descripcion     = $request->descripcion_plan_2;
+            //     $nuevoPlan->estado          = $request->estado_plan_2;
+            //     $nuevoPlan->save();
+
+            //     $nuevoPlanId = Plan::latest('id')->first();
+                
+            //     $nuevaCobertura                  = new Cobertura();
+            //         $nuevaCobertura->status          = $request->estado;
+            //         $nuevaCobertura->obra_social_id  = $nuevaObraSocialId;
+            //         $nuevaCobertura->plan_id         = $nuevoPlanId;
+            //     $nuevaCobertura->save();
+
+            // }
+            // else if ($request->estado_plan_3 != null) 
+            // {
+            //     $nuevoPlan                  = new Plan();
+            //     $nuevoPlan->nombre          = $request->nombre_plan_3;
+            //     $nuevoPlan->descripcion     = $request->descripcion_plan_3;
+            //     $nuevoPlan->estado          = $request->estado_plan_3;
+            //     $nuevoPlan->save();
+
+            //     $nuevoPlanId = Plan::latest('id')->first();
+                
+            //     $nuevaCobertura                  = new Cobertura();
+            //         $nuevaCobertura->status          = $request->estado;
+            //         $nuevaCobertura->obra_social_id  = $nuevaObraSocialId;
+            //         $nuevaCobertura->plan_id         = $nuevoPlanId;
+            //     $nuevaCobertura->save();
+
+            // }
+            // else if ($request->estado_plan_4 != null) 
+            // {
+            //     $nuevoPlan                  = new Plan();
+            //     $nuevoPlan->nombre          = $request->nombre_plan_4;
+            //     $nuevoPlan->descripcion     = $request->descripcion_plan_4;
+            //     $nuevoPlan->estado          = $request->estado_plan_4;
+            //     $nuevoPlan->save();
+
+            //     $nuevoPlanId = Plan::latest('id')->first();
+                
+            //     $nuevaCobertura                  = new Cobertura();
+            //         $nuevaCobertura->status          = $request->estado;
+            //         $nuevaCobertura->obra_social_id  = $nuevaObraSocialId;
+            //         $nuevaCobertura->plan_id         = $nuevoPlanId;
+            //     $nuevaCobertura->save();
+
+            // }
+            // else if ($request->estado_plan_5 != null) 
+            // {
+            //     $nuevoPlan                  = new Plan();
+            //     $nuevoPlan->nombre          = $request->nombre_plan_5;
+            //     $nuevoPlan->descripcion     = $request->descripcion_plan_5;
+            //     $nuevoPlan->estado          = $request->estado_plan_5;
+            //     $nuevoPlan->save();
+
+            //     $nuevoPlanId = Plan::latest('id')->first();
+                
+            //     $nuevaCobertura                  = new Cobertura();
+            //         $nuevaCobertura->status          = $request->estado;
+            //         $nuevaCobertura->obra_social_id  = $nuevaObraSocialId;
+            //         $nuevaCobertura->plan_id         = $nuevoPlanId;
+            //     $nuevaCobertura->save();
+
+            // }
+            // $nuevoPlan->save();
+
+            // $nuevoPlanId = Plan::latest('id')->first();
+            // dd($nuevoPlanId);
+            // // Cobertura
+            // $nuevaCobertura                  = new Cobertura();
+            // $nuevaCobertura->status          = $request->estado;
+            // $nuevaCobertura->obra_social_id  = $nuevaObraSocialId;
+            // $nuevaCobertura->plan_id         = $nuevoPlanId;
+            // $nuevaCobertura->save();
+            dd('Cobertura agregada');
+        return back()->with('mensjae', 'Cobertura agregada');
+
     }
 
     /**
