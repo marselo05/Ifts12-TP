@@ -19,11 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/sucursales', 'HomeController@sucursales')->name('sucursales');
-Route::get('/cartilla', 'HomeController@cartilla')->name('cartilla');
-Route::get('/nosotros', 'HomeController@nosotros')->name('nosotros');
-Route::get('/contactenos', 'HomeController@contactenos')->name('contactenos');
+Route::get('home', 'HomeController@index')->name('home');
+Route::get('sucursales', 'HomeController@sucursales')->name('sucursales');
+Route::get('cartilla', 'HomeController@cartilla')->name('cartilla');
+Route::get('nosotros', 'HomeController@nosotros')->name('nosotros');
+Route::get('contactenos', 'HomeController@contactenos')->name('contactenos');
 
 // Sucursales
 	Route::get('/sucursal', 'SucursalController@index')->name('sucursal.index');
@@ -47,9 +47,21 @@ Route::get('/contactenos', 'HomeController@contactenos')->name('contactenos');
 	Route::post('/cobertura/store', 'CoberturaController@store')->name('cobertura.store');
 	Route::get('/cobertura/edit/{id}', 'CoberturaController@edit')->name('cobertura.edit');
 
-// Usuarios
+// Profesional
+	Route::get('/profesional', 'ProfesionalController@index')->name('profesional.index');
+	Route::get('/profesional/create', 'ProfesionalController@create')->name('profesional.create');
+	Route::post('/profesional/store', 'ProfesionalController@store')->name('profesional.store');
+	Route::get('/profesional/edit/{id}', 'ProfesionalController@edit')->name('profesional.edit');
+	Route::put('/profesional/edit/{id}', 'ProfesionalController@update')->name('profesional.update');
+	Route::get('/profesional/delete/{id}', 'ProfesionalController@delete')->name('profesional.delete');
 
-// Tipo de orden 
+// Salas de las sucursales con sus respectivas Especialidades
+	Route::get('/salas', 'SalaController@index')->name('salas.index');
 
-// TABLA PIBOT entre [SUCURSAL, ESPECIALDAD] y SALA según sucursal
-// Turnos	
+
+// Pacientes
+
+// Turnos
+
+// Reportes	
+	// cuantas paciente atiene cada sucursal

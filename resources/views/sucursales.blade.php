@@ -72,7 +72,9 @@
 	    position: relative;">
 			<header class="masthead mb-auto">
 		        <div class="inner">
-		            <h3 class="masthead-brand">Clínicas - IFTS 12</h3>
+		            <a href="{{ route('home') }}">
+		            	<h3 class="masthead-brand">Clínicas - IFTS 12</h3>
+		            </a>
 		            <nav class="nav nav-masthead justify-content-center">
 		                {{-- <a class="nav-link active" href="#">Home</a> --}}
 		                <a class="nav-link" href="{{ route('sucursales') }}">Sucursales</a>
@@ -83,32 +85,6 @@
 		    </header>		
 		</div>
 	</div>
-
-    <header style="display: none;">
-		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-			<a class="navbar-brand" href="#">Carousel</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-			  	<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarCollapse">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-					  	<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-					  	<a class="nav-link" href="#">Link</a>
-					</li>
-					<li class="nav-item">
-					  	<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-					</li>
-				</ul>
-				<form class="form-inline mt-2 mt-md-0">
-					<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				</form>
-			</div>
-		</nav>
-	</header>
 
 	<main role="main" class="main">
 
@@ -128,7 +104,7 @@
 			        			Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
 			        		</p>
 			        		<p>
-			        			<a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a>
+			        			<a class="btn btn-lg " href="#" role="button">Sign up today</a>
 			        		</p>
 			      		</div>
 			    	</div>
@@ -139,7 +115,9 @@
 				      	<div class="carousel-caption">
 				        	<h1>Another example headline.</h1>
 				        	<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				        	<p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+				        	<p>
+				        		<a class="btn btn-lg " href="#" role="button">Learn more</a>
+				        	</p>
 				      	</div>
 				    </div>
 			  	</div>
@@ -149,7 +127,9 @@
 				      	<div class="carousel-caption text-right">
 				        	<h1>One more for good measure.</h1>
 				        	<p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				        	<p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+				        	<p>
+				        		<a class="btn btn-lg " href="#" role="button">Browse gallery</a>
+				        	</p>
 				      	</div>
 				    </div>
 			  	</div>
@@ -176,19 +156,23 @@
 		        	<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 		        	<h2>Heading</h2>
 		        	<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
-		        	<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+		        	{{-- <p>
+		        		<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+		        	</p> --}}
 		      	</div><!-- /.col-lg-4 -->
 		      	<div class="col-lg-4">
 		        	<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 			        <h2>Heading</h2>
 			        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
-			        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+			        {{-- <p>
+			        	<a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+			        </p> --}}
 		      	</div><!-- /.col-lg-4 -->
 		      	<div class="col-lg-4">
 			        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 			        <h2>Heading</h2>
 			        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-			        <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+			        {{-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> --}}
 		      	</div><!-- /.col-lg-4 -->
 		    </div><!-- /.row -->
 
@@ -196,7 +180,7 @@
 
 		    <hr class="featurette-divider">
 
-		    <div class="row featurette">
+{{-- 		    <div class="row featurette">
 		      	<div class="col-md-7">
 		        	<h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
 		        	<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
@@ -230,7 +214,7 @@
 		      	</div>
 			</div>
 
-		    <hr class="featurette-divider">
+		    <hr class="featurette-divider"> --}}
 
 		    <!-- /END THE FEATURETTES -->
 
@@ -238,7 +222,9 @@
 
 	  	<!-- FOOTER -->
 	  	<footer class="container">
-	    	<p class="float-right"><a href="#">Back to top</a></p>
+	    	<p class="float-right">
+	    		{{-- <a href="#">Back to top</a> --}}
+	    	</p>
 	    	<p>Todos los de rechos resevados <a href="#">IFTS 12</a>, by <a href="#">@mdo</a>.</p>
 	  	</footer>
 

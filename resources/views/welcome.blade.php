@@ -17,7 +17,9 @@
         <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
             <header class="masthead mb-auto">
                 <div class="inner">
-                    <h3 class="masthead-brand">Clínicas - IFTS 12</h3>
+                    <a href="{{ route('home') }}">
+                        <h3 class="masthead-brand">Clínicas - IFTS 12</h3>
+                    </a>
                     <nav class="nav nav-masthead justify-content-center">
                         {{-- <a class="nav-link active" href="#">Home</a> --}}
                         <a class="nav-link" href="{{ route('sucursales') }}">Sucursales</a>

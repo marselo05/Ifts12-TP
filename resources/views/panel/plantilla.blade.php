@@ -67,31 +67,49 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('sucursal.index') }}">
                                 <span data-feather="file"></span>
-                                Sucursales
+                                Sucursales (Adm.S)
+                            </a>
+                        </li>
+                        <li class="nav-item" >
+                            <a class="nav-link" href="{{ route('salas.index') }}">
+                                <span data-feather="bar-chart-2"></span>
+                                Sucursal Salas (Adm.S)
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('especialidad.index') }}">
                                 <span data-feather="shopping-cart"></span>
-                                Especialidades
+                                Especialidades (Adm.S)
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cobertura.index') }}">
                                 <span data-feather="coberturas"></span>
-                                Coberturas
+                                Coberturas (Adm.S)
                             </a>
                         </li>
-                        <li class="nav-item" style="display: none;">
-                            <a class="nav-link" href="#">
-                                <span data-feather="bar-chart-2"></span>
-                                Reports
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('profesional.index') }}">
+                                <span data-feather="layers"></span>
+                                Profesionales (Adm)
                             </a>
                         </li>
-                        <li class="nav-item" style="display: none;">
+                        <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <span data-feather="layers"></span>
-                                Integrations
+                                Paciente (Rec)
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="layers"></span>
+                                Turnos (Rec)
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span data-feather="layers"></span>
+                                Reportes (Direc)
                             </a>
                         </li>
                     </ul>
