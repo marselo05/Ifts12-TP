@@ -57,7 +57,6 @@ class SucursalController extends Controller
             'imagen' => 'required'
         ]);
 
-
         if ($request->hasFile('imagen')) 
         {
             $file       = $request->file('imagen'); 
@@ -69,11 +68,12 @@ class SucursalController extends Controller
         /* CARGAR LOS DIAS Y HORARIO EN LA TABLA SUCURSALES_DIAS_HORARIOS */ 
         /******************************************************************/
             $sucursalNueva              = new Sucursal;
-            $sucursalNueva->nombre      = $request->nombre;
-            $sucursalNueva->direccion   = $request->direccion;
-            $sucursalNueva->telefono    = $request->telefono;
-            $sucursalNueva->imagen      = $name;
-            $sucursalNueva->estado      = $request->estado;
+                $sucursalNueva->nombre      = $request->nombre;
+                $sucursalNueva->direccion   = $request->direccion;
+                $sucursalNueva->telefono    = $request->telefono;
+                $sucursalNueva->imagen      = $name;
+                $sucursalNueva->email       = $request->email;
+                $sucursalNueva->estado      = $request->estado;
             $sucursalNueva->save();
         
         // OBTENGO EL NÚMERO DE ID DE LA SUCURSAL GENERADA

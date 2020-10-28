@@ -8,6 +8,7 @@
     <meta name="generator" content="Jekyll v4.1.1">
     <title>Dashboard Template · Bootstrap</title>
 
+
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
 
     <!-- Bootstrap core CSS -->
@@ -29,6 +30,10 @@
     <link href="{{ asset('css/panel/vanilla-dataTables.css') }}" rel="stylesheet">
 
     <script src="{{ asset('js/panel/vanilla-dataTables.js') }}"></script>
+    
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     
 </head>
 <body>
@@ -69,12 +74,20 @@
                                 <span data-feather="file"></span>
                                 Sucursales (Adm.S)
                             </a>
-                        </li>
-                        <li class="nav-item" >
-                            <a class="nav-link" href="{{ route('salas.index') }}">
-                                <span data-feather="bar-chart-2"></span>
-                                Sucursal Salas (Adm.S)
-                            </a>
+                            <ul>
+                                <li class="nav-item" >
+                                    <a class="nav-link" href="{{ route('sucursal.index') }}">
+                                        <span data-feather="bar-chart-2"></span>
+                                        Listado (Adm.S)
+                                    </a>
+                                </li>
+                                <li class="nav-item" >
+                                    <a class="nav-link" href="{{ route('salas.index') }}">
+                                        <span data-feather="bar-chart-2"></span>
+                                        Salas (Adm.S)
+                                    </a>
+                                </li>        
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('especialidad.index') }}">
@@ -95,13 +108,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('paciente.index') }}">
                                 <span data-feather="layers"></span>
                                 Paciente (Rec)
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('turnos.index') }}">
                                 <span data-feather="layers"></span>
                                 Turnos (Rec)
                             </a>
@@ -156,13 +169,13 @@
             </main>
         </div>
     </div>
-    <script src="{{ asset('js/panel/jquery-3.5.1.slim.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/panel/jquery-3.5.1.slim.min.js') }}"></script>
     <script>
         window.jQuery || document.write('<script src="{{ asset('js/panel/jquery.slim.min.js') }}"><\/script>');
-    </script>
-    <script src="{{ asset('js/panel/bootstrap.bundle.min.js') }}"></script>
+    </script> --}}
+    {{-- <script src="{{ asset('js/panel/bootstrap.bundle.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/panel/Chart.min.js') }}"></script> --}}
-    <script src="{{ asset('js/panel/feather.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/panel/feather.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/panel/dashboard.js') }}"></script> --}}
     
 </body>

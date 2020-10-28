@@ -57,11 +57,31 @@ Route::get('contactenos', 'HomeController@contactenos')->name('contactenos');
 
 // Salas de las sucursales con sus respectivas Especialidades
 	Route::get('/salas', 'SalaController@index')->name('salas.index');
+	Route::get('/salas/create', 'SalaController@create')->name('salas.create');
+	Route::post('/salas/store', 'SalaController@store')->name('salas.store');
+	Route::post('/salas/edit/{id}', 'SalaController@edit')->name('salas.edit');
+	Route::put('/salas/edit/{id}', 'SalaController@update')->name('salas.update');
+	Route::put('/salas/delete/{id}', 'SalaController@delete')->name('salas.delete');
 
+	Route::post('/salas', 'SalaController@consultoSucursalesSalas')->name('salas.consultoSucursalesSalas');
 
+	// Route::post('/salas', 'SalaController@consultoEspecialidad');
+	// Route::post('/salas', 'SalaController@consultoEspecialidadPost')->name('ajaxRequest.post');
+	
 // Pacientes
-
+	Route::get('/paciente', 'PacienteController@index')->name('paciente.index');
+	Route::get('/paciente/create', 'PacienteController@create')->name('paciente.create');
+	Route::post('/paciente/store', 'PacienteController@store')->name('paciente.store');
+	Route::get('/paciente/edit/{id}', 'PacienteController@edit')->name('paciente.edit');
+	Route::put('/paciente/edit/{id}', 'PacienteController@update')->name('paciente.update');
+	Route::get('/paciente/delete/{id}', 'PacienteController@delete')->name('paciente.delete');
 // Turnos
+	Route::get('/turnos', 'TurnoController@index')->name('turnos.index');
+	Route::get('/turnos/create', 'TurnoController@create')->name('turnos.create');
+	Route::post('/turnos/store', 'TurnoController@store')->name('turno.store');
+	
+	// Route::get('/turnos', 'TurnoController@ajaxRequest');
+	Route::post('/turnos', 'TurnoController@ajaxRequestPost')->name('ajaxRequest.post');
 
 // Reportes	
 	// cuantas paciente atiene cada sucursal

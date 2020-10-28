@@ -3,10 +3,10 @@
 @section('cuerpo_panel')
     
     <nav class="d-flex justify-content-between align-items-center">
-        <h2>SUCURSALES</h2>
+        <h2>Sucursales - Salas</h2>
         <ul class="nav nav-pills justify-content-end">
             <li class="nav-item">
-            <a class="nav-link btn btn-primary" href="{{ route('sucursal.index') }}" tabindex="-1" aria-disabled="true">Volver</a>
+                <a class="nav-link btn btn-primary" href="{{ route('salas.index') }}" tabindex="-1" aria-disabled="true">Volver</a>
             </li>
         </ul>
     </nav>
@@ -17,67 +17,71 @@
             <div class="alert alert-success">{{ session('mensaje') }}</div>
         @endif
 
-        <form method="POST" action="{{ route('sucursal.store') }}" id="formulario_sucursal" class="formulario" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('salas.store') }}" id="formulario_cobertura" class="formulario">
             @csrf
 
             <!-- REQUERIMIENTO DEL FORMULARIO -->
-            @error('nombre')
+            @error('sucursales')
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    El nombre es requerido
+                    La sucursal es requerido
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             @enderror 
             
-            @if ($errors->has('direccion'))
+            @if ($errors->has('especialidad'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                  La dirección es requerida
+                  La especialidad es requerida
                   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
             @endif
 
-            <!-- CARGA DEL NOMBRE/DIRECCIÓN/TELÉFONO -->
+            <!-- CARGA DEL NOMBRE/DESCRIPCIÓN/TELÉFONO -->
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="nombre">
-                        <h6>Nombre de la sucursal</h6>
+                        <h6>Sucursal</h6>
                     </label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}">
+                    <select class="form-control" id="sucursal" name="sucursal">
+                    	@foreach ($sucursales as $sucursal)
+				        	<option value="{{ $sucursal->id }}">{{ $sucursal->nombre }}</option>
+				        @endforeach
+				    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="apellido">
+                        <h6>Sala</h6>
+                    </label>
+                    <input type="text" class="form-control" name="sala" value="{{ old('sala') }}" placeholder="Ingrese el nombre de sala">
+                </div>
+            </div>
+            <div class="form-row">
+            	<div class="form-group col-md-4">
+                    <label for="profesional">
+                        <h6>Profesional</h6>
+                    </label>
+                    <select class="form-control" id="profesional" name="profesional">
+				        <option selected>Profesional</option>
+				        @foreach ($profesionales as $profesional)
+				        	<option value="{{ $profesional->id }}">{{ $profesional->nombre }}</option>
+				        @endforeach
+				    </select>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="direccion">
-                        <h6>Dirección</h6>
+                        <h6>Estudio</h6>
                     </label>
-                    <input type="text" class="form-control" id="direccion" name="direccion" value="{{ old('direccion') }}">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="telefono">
-                        <h6>Teléfono</h6>
-                    </label>
-                    <input type="number" class="form-control" id="telefono" name="telefono" placeholder="Ej: 4 554 4444" value="{{ old('telefono') }}">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="email">
-                        <h6>Email</h6>
-                    </label>
-                    <input type="text" class="form-control" name="email" placeholder="sucursal@gmail.com" value="{{ old('email') }}">
-                </div>
-                <div class="form-group col-md-4">
-                    
-                        <label for="Imagen">
-                            <h6>Imagen</h6>
-                        </label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="imagen" aria-describedby="image" name="imagen">
-                            <label class="custom-file-label" for="imagen">Choose file</label>
-                        </div>
-                    
+                    <select class="form-control" id="especialidad" name="especialidad">
+				        <option selected>Especialidad</option>
+				        @foreach ($especialidades as $especialidad)
+				        	<option value="{{ $especialidad->id }}">{{ $especialidad->nombre }}</option>
+				        @endforeach
+				    </select>
                 </div>
             </div>
-
             <!-- CARGA DE DÍAS Y HORARIOS -->
             <div class="form-row">
                 <div class="col-md-7">
@@ -257,6 +261,14 @@
 
                 </div>
             </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="observacion">
+                        <h6>Observación</h6>
+                    </label>
+                    <textarea class="form-control" name="observacion" value="{{ old('observacion') }}"></textarea>
+                </div>
+            </div>
 
             <!-- ESTADO DEL REGISTRO -->
             <div class="form-group">
@@ -284,6 +296,19 @@
             <!-- PROCESAR CARGA -->
             <button type="submit" class="btn btn-primary">AGREGAR</button>
         </form>
-    </section>    
+    </section> 
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"  crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    	
+    	    
+
+ 
+    	
+
+
+
+
+    </script>   
 
 @endsection

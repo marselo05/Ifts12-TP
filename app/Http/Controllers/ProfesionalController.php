@@ -18,10 +18,7 @@ class ProfesionalController extends Controller
         
         $profesionales  = Profesinal::all();
         $especialidades = Especialidad::all();
-        // print_r( '<pre>' );
-        // print_r( count($especialidades) );
-        // print_r( '</pre>' );
-        // exit;
+
         return view('profesional.index', compact('profesionales','especialidades'));
     }
 

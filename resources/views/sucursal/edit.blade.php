@@ -54,7 +54,7 @@
                     <label for="nombre">
                         <h6>Nombre de la sucursal</h6>
                     </label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $sucursales->nombre }}">
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $sucursales->nombre }}" disabled="">
                 </div>
                 <div class="form-group col-md-4">
                     <label for="direccion">
