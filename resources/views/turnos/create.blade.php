@@ -21,10 +21,16 @@
             <h1>Nuevo turno</h1>
             {{-- CONSULTO POR EL PACIENTE --}}
             <form id="paciente-consultar_dni">
-                <label>Consultar paciente por número de documento: </label>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert-dni-paciente">
+                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <label>Ingrese el número de DNI del paciente: </label>
                 <div class="form-row">
-                    <div class="form-group col-md-8">
-                        <input type="number" name="buscar_paciente" id="buscar_paciente" class="form-control" placeholder="Nombre" required="">
+                    <div class="form-group col-md-4">
+                        <input type="number" name="buscar_paciente" id="buscar_paciente" class="form-control" placeholder="DNI" required="">
                     </div>
                     <div class="form-group col-md-4">
                         <input type="submit" name="consultar" value="Consultar" class="btn btn-primary">
@@ -77,31 +83,50 @@
   
     <script type="text/javascript">
        
-        const $id = document.getElementById.bind(document);
+        $('#alert-dni-paciente').hide();
 
-        $pacientes = '<?php echo $pacientes; ?>';
-        $pacientes = JSON.parse($pacientes);
+        const   $id = document.getElementById.bind(document);
+
+        let $pacientes = '<?php echo $pacientes; ?>';
+            $pacientes = JSON.parse($pacientes);
 
         $id('paciente-consultar_dni').addEventListener('submit', function(a) {
             a.preventDefault();
 
-            $id('nombre').value     = '';
-            $id('apellido').value   = '';
-            $id('dni').value        = '';
+            // consulto si el campo esta vacio
+            if ( $id('buscar_paciente').value == '' ) 
+            {
+                $('#alert-dni-paciente').show();
+            }
+            else
+            {
 
-            $pacientes.forEach( (paciente) => {
+                $id('nombre').value     = '';
+                $id('apellido').value   = '';
+                $id('dni').value        = '';
 
-                if ( $id('buscar_paciente').value == paciente.dni ) 
-                {
-                    $id('nombre').value     = paciente.nombre;
-                    $id('apellido').value   = paciente.apellido;
-                    $id('dni').value        = paciente.dni;
+                $flag = 0;
+                $pacientes.forEach( (paciente) => {
 
-                    if ( paciente.nro_afiliado == '' || paciente.nro_afiliado == '000000')
-                        $id('paciente-particular').innerHTML = "Es particular";
-                }
-                    
-            });
+                    if ( $id('buscar_paciente').value == paciente.dni ) 
+                    {
+                        $flag = 1;
+                        $id('nombre').value     = paciente.nombre;
+                        $id('apellido').value   = paciente.apellido;
+                        $id('dni').value        = paciente.dni;
+
+                        // if ( paciente.nro_afiliado == '' || paciente.nro_afiliado == '0000')
+                        //     $id('paciente-particular').innerHTML = "Es particular";
+                    }
+
+                });
+                // valido tipo de usuario
+                if ($flag == 0) 
+                    $id('paciente-particular').innerHTML = "Paciente Particular";
+                else
+                    $id('paciente-particular').innerHTML = "Paciente Socio";
+            }
+
 
         }, false);
 

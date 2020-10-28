@@ -9,7 +9,7 @@
     <title>Dashboard Template · Bootstrap</title>
 
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/">
+    {{-- <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/"> --}}
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/panel/bootstrap.min.css') }}" rel="stylesheet">
@@ -173,7 +173,7 @@
     <script>
         window.jQuery || document.write('<script src="{{ asset('js/panel/jquery.slim.min.js') }}"><\/script>');
     </script> --}}
-    {{-- <script src="{{ asset('js/panel/bootstrap.bundle.min.js') }}"></script> --}}
+    <script src="{{ asset('js/panel/bootstrap.bundle.min.js') }}"></script>
     {{-- <script src="{{ asset('js/panel/Chart.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/panel/feather.min.js') }}"></script> --}}
     {{-- <script src="{{ asset('js/panel/dashboard.js') }}"></script> --}}
