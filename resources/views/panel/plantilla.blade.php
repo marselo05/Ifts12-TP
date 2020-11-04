@@ -9,7 +9,7 @@
     <title>Dashboard Template · Bootstrap</title>
 
 
-    {{-- <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/dashboard/"> --}}
+    <link href="{{ asset('css/fullcalendar/main.css') }}" rel="stylesheet">
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/panel/bootstrap.min.css') }}" rel="stylesheet">
@@ -32,6 +32,8 @@
     <script src="{{ asset('js/panel/vanilla-dataTables.js') }}"></script>
     
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script src="{{ asset('js/fullcalendar/main.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     

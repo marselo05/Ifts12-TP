@@ -13,6 +13,7 @@ use App\Plan;
 
 use App\Cobertura;
 use App\Paciente;
+use App\Turno;
 
 class TurnoController extends Controller
 {
@@ -60,8 +61,25 @@ class TurnoController extends Controller
     public function create()
     {
         //
-        $pacientes = Paciente::all();
-        return view('turnos.create', compact('pacientes'));
+        $pacientes      = Paciente::all();
+        $especialidades = Especialidad::all();
+
+        $turnos         = Turno::select('dia AS daysOfWeek', 'fecha as start', 'hora_inicio AS startTime', 'hora_fin AS endTime')
+                                    ->where('sucursal_id', 1)
+                                    ->where('especialidad_id', 1)
+                                    ->where('estado', 1)
+                                    ->get();
+        
+        $diasEspecialidades = Sala::select('dia AS daysOfWeek', 'hora_desde AS startTime', 'hora_hasta AS endTime')
+                                    ->where('sucursal_id', 1)
+                                    ->where('especialidad_id', 1)
+                                    ->where('estado', 1)
+                                    ->get();
+                                
+        // dd($turnos);
+        // response()->json( ['success'=> 'Got Simple Ajax Request.'] )
+        $fechaHoy = date("Y-m-d");
+        return view('turnos.create', compact('pacientes', 'especialidades', 'diasEspecialidades', 'turnos', 'fechaHoy'));
     }
 
     /**

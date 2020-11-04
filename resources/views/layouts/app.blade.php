@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Clínicas - IFTS 12') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -18,10 +18,20 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
+        {{-- <link rel="stylesheet" href="{{ asset('css/front/bootstrap.min.css') }}"> --}}
+
+        <link rel="stylesheet" href="{{ asset('css/front/cover.css') }}">
+    <style type="text/css">
+        form, .card-header {color: #000; }
+        #body, #app {width: 100%;}
+
+    </style>
 </head>
-<body>
+<body id="body">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="display: none;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
