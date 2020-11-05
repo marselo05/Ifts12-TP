@@ -1,153 +1,126 @@
 @extends('panel.plantilla')
 
 @section('cuerpo_panel')   
-    
+  
     <nav class="d-flex justify-content-between align-items-center">
-        <h2>Turnos</h2>
+        <h2>Turnos asde</h2>
         <ul class="nav nav-pills justify-content-end">
             <li class="nav-item">
-            <a class="nav-link btn btn-primary" href="{{ route('turnos.index') }}" tabindex="-1" aria-disabled="true">Volver</a>
+            <a class="nav-link btn btn-primary" href="{{ route('turnos.validarEspecialidad') }}" tabindex="-1" aria-disabled="true">Volver</a>
             </li>
         </ul>
     </nav>
 
     <section>
         
-        <?php 
-            $pacientes              = json_encode($pacientes);
-            $diasEspecialidades     = json_encode($diasEspecialidades);
-            $turnosReservados       = json_encode($turnos);
-            print_r('<pre>');
-                print_r($diasEspecialidades);
-            print_r('</pre>');
-        ?>
-        
         <div class="container">
-            <h6>Paso 1 - vaerificar usuario</h6>
-            {{-- CONSULTO POR EL PACIENTE --}}
-            <form id="paciente-consultar_dni">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert" id="alert-dni-paciente">
-                    <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <label>Ingrese el número de DNI del paciente: </label>
+            
+            <h6>Seleccione un turno en el calendario</h6>
+
+            {{-- CONSULTO POR LA ESPECIALDAD --}}
+            <h6>Datos del paciente</h6>
+            <form name="form_turno" id="form_turno" action="{{ route('turnos.store') }}" method="POST">
+                @csrf
+
                 <div class="form-row">
                     <div class="form-group col-md-4">
-                        <input type="number" name="buscar_paciente" id="buscar_paciente" class="form-control" placeholder="DNI" required="">
+                        <label>Nombre:</label>
+                        <input type="hidden" name="id_paciente" class="form-control" placeholder="Nombre" required="" value="{{ $pacientes[0]->id }}">
+                        <input type="text" name="nombre"  class="form-control" placeholder="Nombre" required="" value="{{ $pacientes[0]->nombre }}" >
                     </div>
                     <div class="form-group col-md-4">
-                        <input type="submit" name="consultar" value="Consultar" class="btn btn-primary">
+                        <label>Apellido:</label>
+                        <input type="text" name="apellido" class="form-control" placeholder="Apelldio" required="" value="{{ $pacientes[0]->apellido }}" >
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>DNI:</label>
+                        <input type="number" name="dni" class="form-control" placeholder="D.N.I" required="" value="{{ $pacientes[0]->dni }}">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Seleccionar sucursal: </label>
+                        <select class="custom-select" name="form_espeacialidad__sucursal">
+                            <option >Seleccionar sucursal</option>
+                            @foreach ($sucursales as $sucursal)
+                                <option value="{{ $sucursal->id }}"
+                                @if(isset($sucursal_select))
+                                    @if($sucursal_select == $sucursal->id)
+                                        selected 
+                                    @endif
+                                @endif
+                                >{{ $sucursal->nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Seleccionar especialidad: </label>
+                        <select class="custom-select" name="form_espeacialidad__especialidad">
+                            <option >Seleccionar especialidad</option>
+                            @foreach ($especialidades as $especialidad)
+                                <option value="{{ $especialidad->id }}"
+                                @if(isset($especialidad_select))
+                                    @if($especialidad_select == $especialidad->id)
+                                        selected 
+                                    @endif        
+                                @endif    
+                                >{{ $especialidad->nombre }}</option>
+
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                	<div class="form-group col-md-4">
+                        <label>Fecha:</label>
+                        <input type="text" name="fecha id" class="form-control" placeholder="fecha" required="" value="{{ $fechaHoy }}">
+                    </div>
+                	<div class="form-group col-md-4">
+                        <label>Día:</label>
+                        <input type="text" name="dia" id="dia" class="form-control" placeholder="Día" required="">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Hora inicio:</label>
+                        <input type="text" name="hora_inicio" id="hora_inicio" class="form-control" placeholder="hora_inicio" required="">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Hora fin</label>
+                        <input type="text" name="hora_fin" id="hora_fin" class="form-control" placeholder="Hora fin" required="">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <input type="submit" name="consultar" value="Sacar turno" class="btn btn-primary">
                     </div>
                 </div>    
             </form>
 
-            <div>
-                <span>Tipo de paciente: </span>
-                <span id="paciente-particular"></span>
-            </div>
-            {{--  --}}
-            <h6>Paso - </h6>
-            <form >              
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label>Nombre:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" required="">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>Apellido:</label>
-                        <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Apelldio" required="">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>DNI:</label>
-                        <input type="number" name="dni" id="dni" class="form-control" placeholder="D.N.I" required="">
-                    </div>
-                </div>
-       
-                <div class="form-group">
-                    <button class="btn btn-success btn-submit">Submit</button>
-                </div>
-      
-            </form>
-
-            {{-- CONSULTO POR LA ESPECIALDAD --}}
-            <h6>Paso 2 - Buscar especialidad</h6>
-            <form id="form-espeacialidad">
-                <label>Consultar Especialidad: </label>
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <select class="custom-select" id="form-espeacialidad__consultar">
-                            <option selected>Seleccionar especialidad</option>
-                            @foreach ($especialidades as $especialidad)
-
-                                <option value="{{ $especialidad->id }}">{{ $especialidad->nombre }}</option>
-
-                            @endforeach
-                        </select>
-                    </div>  
-                    <div class="form-group col-md-4">
-                        <input type="submit" name="consultar" value="Buscar" class="btn btn-primary">
-                    </div>
-                </div>
-            </form>
-
-            <h6>Calendario</h6>
-            <div id="calendario" style="max-width: 1100px; margin: 0 auto;"></div>
-            
-
         </div>
+
+            @if (isset($calendarioActivo)) 
+                @if ($calendarioActivo == 1) 
+                
+                    <?php
+                        $diasEspecialidades     = json_encode($diasEspecialidades);
+                        $turnosReservados       = json_encode($turnos); 
+                    ?>
+
+                    <h6>Calendario</h6>
+                    <div id="calendario" style="max-width: 1100px; margin: 0 auto;"></div>
+                    <br><br>
+                @endif
+            @endif
+
 
     </section>    
   
     <script type="text/javascript">
-       
-        $('#alert-dni-paciente').hide();
-
+    
         const   $id = document.getElementById.bind(document);
 
         let $pacientes = '<?php echo $pacientes; ?>';
             $pacientes = JSON.parse($pacientes);
 
-        $id('paciente-consultar_dni').addEventListener('submit', function(a) {
-            a.preventDefault();
-
-            // consulto si el campo esta vacio
-            if ( $id('buscar_paciente').value == '' ) 
-            {
-                $('#alert-dni-paciente').show();
-            }
-            else
-            {
-
-                $id('nombre').value     = '';
-                $id('apellido').value   = '';
-                $id('dni').value        = '';
-
-                $flag = 0;
-                $pacientes.forEach( (paciente) => {
-
-                    if ( $id('buscar_paciente').value == paciente.dni ) 
-                    {
-                        $flag = 1;
-                        $id('nombre').value     = paciente.nombre;
-                        $id('apellido').value   = paciente.apellido;
-                        $id('dni').value        = paciente.dni;
-
-                        // if ( paciente.nro_afiliado == '' || paciente.nro_afiliado == '0000')
-                        //     $id('paciente-particular').innerHTML = "Es particular";
-                    }
-
-                });
-                // valido tipo de usuario
-                if ($flag == 0) 
-                    $id('paciente-particular').innerHTML = "Paciente Particular";
-                else
-                    $id('paciente-particular').innerHTML = "Paciente Socio";
-            }
-
-
-        }, false);
 
         let $diasEspecialidades = '<?php echo $diasEspecialidades;?>';
             $diasEspecialidades = JSON.parse($diasEspecialidades);
@@ -189,11 +162,6 @@
                     // dias de la semana
                     for (var $i=0; $i<$diasEstudios.length; $i++) 
                     {
-                        // console.log(
-                        //     'A:.Dia de semana estudio: ' + $diasEstudios[$i] + 
-                        //     ' Cantidad de turnos: '+ $cantidasDeTurnosPorDia[$i] 
-                        // );
-                        //console.log('Sw=0: Start: ' + $startTime+':00 ' + 'End: '+ $startTime +':30' )
                         // si la primera vuelta arranca con cero '00'
                         if ( $diasEspecialidades[$i].startTime.substr(2,3).replace(':','') == '00')
                         {
@@ -211,7 +179,8 @@
                                         endTime: $startTime +':30',
                                         color: 'green',
                                         extendedProps: {
-                                            estado: false
+                                            estado: false,
+                                            daysOfWeek: $diasEstudios[$i],
                                         }
                                     });
 
@@ -227,7 +196,8 @@
                                             endTime: $startTime +':30',
                                             color: 'green',
                                             extendedProps: {
-                                                estado: false
+                                                estado: false,
+                                                daysOfWeek: $diasEstudios[$i],
                                             }
                                         });
                                     }
@@ -239,7 +209,8 @@
                                             endTime: ($startTime  = $startTime + 1) +':00',
                                             color: 'green',
                                             extendedProps: {
-                                                estado: false
+                                                estado: false,
+                                                daysOfWeek: $diasEstudios[$i],
                                             }
                                         });
                                     }
@@ -260,12 +231,13 @@
                                     
                                     $horarioTurnos.push({
                                         daysOfWeek: $diasEstudios[$i],
-                                        startTime: $diasEspecialidades[$i].startTime, // 08:30
+                                        startTime: $diasEspecialidades[$i].startTime, 
                                         endTime: ($startTime + 1) +':00',
                                         color: 'green',
-                                            extendedProps: {
-                                                estado: false
-                                            }
+                                        extendedProps: {
+                                            estado: false,
+                                            daysOfWeek: $diasEstudios[$i],
+                                        }
                                     });
 
                                     $sw=1;
@@ -281,7 +253,8 @@
                                             endTime: ($startTime + 1) +':00',
                                             color: 'green',
                                             extendedProps: {
-                                                estado: false
+                                                estado: false,
+                                                daysOfWeek: $diasEstudios[$i],
                                             }
                                         });
                                     }
@@ -293,7 +266,8 @@
                                             endTime: $startTime +':30',
                                             color: 'green',
                                             extendedProps: {
-                                                estado: false
+                                                estado: false,
+                                                daysOfWeek: $diasEstudios[$i],
                                             }
                                         });
                                     }
@@ -306,8 +280,6 @@
                     }  
                     
                 /* SETEO EL OBJETO TURNOS CALENDARIO*/
-                
-                $turnoCalendarioDisponibles = [];
                 for (var i = 0; i < $horarioTurnos.length; i++) 
                 {
                     // 
@@ -316,7 +288,6 @@
                         // validamos el dia sea igual
                         if ($horarioTurnos[i].daysOfWeek == $turnosReservados[ii].daysOfWeek) 
                         {
-                           // parseInt( $diasEspecialidades[i].endTime.replace(':','') )
                             // validamos que la de inicio y la hora fin sean las mismas
                             if ( 
                                 parseInt( $horarioTurnos[i].startTime.replace(':','') ) == 
@@ -324,7 +295,6 @@
                                 parseInt( $horarioTurnos[i].endTime.replace(':','') ) == 
                                 parseInt( $turnosReservados[ii].endTime.replace(':','') ) )
                             {
-                                // console.log('tr:. '+$turnosReservados[ii])
                                 $horarioTurnos[i].start                   = $turnosReservados[ii].start;
                                 $horarioTurnos[i].extendedProps.estado    = true;
                                 $horarioTurnos[i].color                   = 'blue';
@@ -339,45 +309,11 @@
         /**
             **** CALENARIO *********
         ***/ 
-        // _dias_especialidades = [
-        //     {
-        //         daysOfWeek: [ '1' ],
-        //         startTime: '10:45:00',
-        //         endTime: '12:45:00',
-        //         color: 'red'
-        //     },
-        //     {
-        //         daysOfWeek: [ '2' ],
-        //         startTime: '10:45:00',
-        //         endTime: '12:45:00',
-        //         color: 'red'
-        //     },
-        //     {
-        //         daysOfWeek: [ '3' ],
-        //         startTime: '10:45:00',
-        //         endTime: '12:45:00',
-        //         color: 'red'
-        //     },
-        //     {
-        //         daysOfWeek: [ '4' ],
-        //         startTime: '10:45:00',
-        //         endTime: '12:45:00',
-        //         color: 'red'
-        //     },
-        //     {
-        //         daysOfWeek: [ '5' ],
-        //         startTime: '10:45:00',
-        //         endTime: '12:45:00',
-        //         color: 'red'
-        //     }
-        // ];
-
         document.addEventListener('DOMContentLoaded', function() 
         {
             var calendarEl = document.getElementById('calendario');
             var $fechaHoy = '<?php echo $fechaHoy;?>';
-            // locale: 'es',
-
+           
             var calendar = new FullCalendar.Calendar(calendarEl, 
             {
                 locale: 'es',
@@ -399,75 +335,28 @@
                 selectable: true,
                 selectMirror: true,
                 nowIndicator: true,
-                events: $horarioTurnos
-                // [
-                    //     {
-                    //       title: 'All Day Event',
-                    //       start: '2020-09-01',
-                    //     },
-                    //     {
-                    //       title: 'Long Event',
-                    //       start: '2020-09-07',
-                    //       end: '2020-09-10'
-                    //     },
-                    //     {
-                    //       groupId: 999,
-                    //       title: 'Repeating Event',
-                    //       start: '2020-09-09T16:00:00'
-                    //     },
-                    //     {
-                    //       groupId: 999,
-                    //       title: 'Repeating Event',
-                    //       start: '2020-09-16T16:00:00'
-                    //     },
-                    //     {
-                    //       title: 'Conference',
-                    //       start: '2020-09-11',
-                    //       end: '2020-09-13'
-                    //     },
-                    //     {
-                    //       title: 'Meeting',
-                    //       start: '2020-09-12T10:30:00',
-                    //       end: '2020-09-12T12:30:00'
-                    //     },
-                    //     {
-                    //       title: 'Lunch',
-                    //       start: '2020-09-12T12:00:00'
-                    //     },
-                    //     {
-                    //       title: 'Meeting',
-                    //       start: '2020-09-12T14:30:00'
-                    //     },
-                    //     {
-                    //       title: 'Happy Hour',
-                    //       start: '2020-09-12T17:30:00'
-                    //     },
-                    //     {
-                    //       title: 'Dinner',
-                    //       start: '2020-09-12T20:00:00'
-                    //     },
-                    //     {
-                    //       title: 'Birthday Party',
-                    //       start: '2020-09-13T07:00:00'
-                    //     },
-                    //     {
-                    //       title: 'Click for Google',
-                    //       url: 'http://google.com/',
-                    //       start: '2020-09-28'
-                    //     },
-                // ]
-                ,
+                events: $horarioTurnos,
                 eventClick: function(info) 
                 { 
+                
                     v = info               
                     console.log('Event: ' + info.event)
                     if ( info.event.extendedProps.estado == true ) 
                     {
-                        alert("Este turno ya esta reservado");
+                        alert("Turno no disponible.");
                     }
                     else
                     {
-                        alert("Te envio al formulario de cargar turno");
+
+                        // alert("Te envio al formulario de cargar turno");
+                       	v.el.style.background = 'gray'
+                       	_fecchh = v.el.innerText.split('-');
+
+                        document.getElementById('dia').value 			= v.event.extendedProps.daysOfWeek;
+                        document.getElementById('hora_inicio').value 	= _fecchh[0];
+                        document.getElementById('hora_fin').value 		= _fecchh[1];
+
+                        
                     }
                 },
             });

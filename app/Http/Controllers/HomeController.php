@@ -40,4 +40,9 @@ class HomeController extends Controller
     {
         return view('contactenos');
     }
+
+    public function nosotros()
+    {
+        return view('nosotros');
+    }
 }

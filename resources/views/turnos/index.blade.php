@@ -6,7 +6,7 @@
         <h2>Turnos</h2>
         <ul class="nav nav-pills justify-content-end">
             <li class="nav-item">
-            <a class="nav-link btn btn-primary" href="{{ route('turnos.create') }}" tabindex="-1" aria-disabled="true">Sacar un nuevo turno</a>
+            <a class="nav-link btn btn-primary" href="{{ route('turnos.validarPaciente') }}" tabindex="-1" aria-disabled="true">Sacar un nuevo turno</a>
             </li>
         </ul>
     </nav>
@@ -17,28 +17,6 @@
     <div class="container">
         <h1>Listado de los turnos de la semana</h1>
   
-        <form >
-  
-            <div class="form-group">
-                <label>Name:</label>
-                <input type="text" name="name" class="form-control" placeholder="Name" required="">
-            </div>
-  
-            <div class="form-group">
-                <label>Password:</label>
-                <input type="password" name="password" class="form-control" placeholder="Password" required="">
-            </div>
-   
-            <div class="form-group">
-                <strong>Email:</strong>
-                <input type="email" name="email" class="form-control" placeholder="Email" required="">
-            </div>
-   
-            <div class="form-group">
-                <button class="btn btn-success btn-submit">Submit</button>
-            </div>
-  
-        </form>
     </div>
   
     <script type="text/javascript">

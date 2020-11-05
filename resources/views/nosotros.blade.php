@@ -31,20 +31,7 @@
 
             <main role="main" class="inner cover">
                 <h1 class="cover-heading">Curar S.A</h1>
-                <p class="lead">
-                    Bienvenido al Portal Web de Curar S.A
-                </p>
-                <p class="lead"> Estimado Paciente </p>
-                <p class="lead"> A través del registro de un usuario en nuestro Portal Web usted podrá: </p>
-                <p class="lead">
-                    - Solicitar turnos online
-                    <br>
-                    - Recuerde que las reservas de turnos online se encuentran disponibles sólo para aquellos pacientes que se hayan atendido     previamente en el Curar S.A. Si Ud. aún no ha concurrido a la clinica comuníquese con nuestra Central Telefónica de  Turnos, <br>al 0810-222- CURAR (22748).
-                </p>
-                <p class="lead">
-                    Muchas gracias.
-                    Curar S.A
-                </p>
+                <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                 <p class="lead">
                     <a href="{{ route('login') }}" class="btn btn-lg btn-secondary">Ingresar</a>
                 </p>

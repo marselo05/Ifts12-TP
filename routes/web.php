@@ -79,8 +79,17 @@ Route::get('contactenos', 'HomeController@contactenos')->name('contactenos');
 	Route::get('/paciente/delete/{id}', 'PacienteController@delete')->name('paciente.delete');
 // Turnos
 	Route::get('/turnos', 'TurnoController@index')->name('turnos.index');
-	Route::get('/turnos/create', 'TurnoController@create')->name('turnos.create');
-	Route::post('/turnos/store', 'TurnoController@store')->name('turno.store');
+	// Route::get('/turnos/create', 'TurnoController@create')->name('turnos.create');
+	Route::post('/turnos/store', 'TurnoController@store')->name('turnos.store');
+
+	Route::get('/turnos/validarPaciente', 'TurnoController@validarPaciente')->name('turnos.validarPaciente');
+	Route::post('/turnos/storePaciente', 'TurnoController@storePaciente')->name('turnos.storePaciente');
+
+	Route::get('/turnos/validarEspecialidad', 'TurnoController@validarEspecialidad')->name('turnos.validarEspecialidad');
+	Route::post('/turnos/storeValidarEspecialidad', 'TurnoController@storeValidarEspecialidad')->name('turnos.storeValidarEspecialidad');
+
+	Route::post('/turnos/calendarioTurnos', 'TurnoController@calendarioTurnos')->name('turnos.calendarioTurnos');
+
 	
 	// Route::get('/turnos', 'TurnoController@ajaxRequest');
 	Route::post('/turnos', 'TurnoController@ajaxRequestPost')->name('ajaxRequest.post');
