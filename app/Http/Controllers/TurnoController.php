@@ -18,31 +18,6 @@ use App\Turno;
 class TurnoController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function ajaxRequest()
-    {
-        return view('turnos.index');
-    }
-   
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function ajaxRequestPost(Request $request)
-    {
-
-        $input = $request->all();
-        // dd($input);
-        \Log::info($input);
-   
-        return response()->json( ['success'=> 'Got Simple Ajax Request.'] );
-    }
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -50,9 +25,28 @@ class TurnoController extends Controller
     public function index()
     {
         //
-        return view('turnos.index');
+        $fechaHoy   = date("Y-m-d");
+        $turnos     = Turno::all()
+                        ->where('estado', 1)
+                        ->where('fecha', $fechaHoy);
+
+        $confirmados   = Turno::all()
+                        ->where('estado', 2)
+                        ->where('fecha', $fechaHoy);
+
+        return view('turnos.index', compact('turnos', 'confirmados'));
     }
 
+
+    public function confirmarTurno ($id)
+    {
+        // dd($id);
+        $turnoConfirma               = Turno::find($id);
+        $turnoConfirma->estado       = 2;
+        $turnoConfirma->save();
+
+        return back()->with('mensaje', 'El paciente ha sido confirmado');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -76,8 +70,6 @@ class TurnoController extends Controller
                                     ->where('estado', 1)
                                     ->get();
                                 
-        // dd($turnos);
-        // response()->json( ['success'=> 'Got Simple Ajax Request.'] )
         $fechaHoy = date("Y-m-d");
         return view('turnos.create', compact('pacientes', 'especialidades', 'diasEspecialidades', 'turnos', 'fechaHoy'));
     }
@@ -267,6 +259,9 @@ class TurnoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $turnoEliminar = Turno::findOrFail($id);
+        $turnoEliminar->delete();
+
+        return back()->with('mensaje', 'Turno eliminado.');
     }
 }

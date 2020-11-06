@@ -89,7 +89,8 @@ Route::get('contactenos', 'HomeController@contactenos')->name('contactenos');
 	Route::post('/turnos/storeValidarEspecialidad', 'TurnoController@storeValidarEspecialidad')->name('turnos.storeValidarEspecialidad');
 
 	Route::post('/turnos/calendarioTurnos', 'TurnoController@calendarioTurnos')->name('turnos.calendarioTurnos');
-
+	Route::get('/turnos/confirmarTurno/{id}', 'TurnoController@confirmarTurno')->name('turno.confirmarTurno');
+	Route::delete('/turnos/delete/{id}', 'TurnoController@destroy')->name('turno.delete');
 	
 	// Route::get('/turnos', 'TurnoController@ajaxRequest');
 	Route::post('/turnos', 'TurnoController@ajaxRequestPost')->name('ajaxRequest.post');

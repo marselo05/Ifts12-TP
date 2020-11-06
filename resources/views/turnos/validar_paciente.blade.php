@@ -34,30 +34,6 @@
                 </div>    
             </form>
 
-            <div>
-                <span>Tipo de paciente: </span>
-                <span id="paciente-particular"></span>
-            </div>
-            {{--  --}}
-            <h6>Datos del paciente </h6>
-            <form >              
-                <div class="form-row">
-                    <div class="form-group col-md-4">
-                        <label>Nombre:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre" disabled="">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>Apellido:</label>
-                        <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Apelldio" disabled>
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label>DNI:</label>
-                        <input type="number" name="dni" id="dni" class="form-control" placeholder="D.N.I" disabled="">
-                    </div>
-                </div>
-      
-            </form>
-
         </div>
 
     </section>    
