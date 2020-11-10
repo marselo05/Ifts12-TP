@@ -25,7 +25,7 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::get('sucursales', 'HomeController@sucursales')->name('sucursales');
 Route::get('cartilla', 'HomeController@cartilla')->name('cartilla');
 Route::get('nosotros', 'HomeController@nosotros')->name('nosotros');
-Route::get('contactenos', 'HomeController@contactenos')->name('contactenos');
+//Route::get('contactenos', 'HomeController@contactenos')->name('contactenos');
 
 // Sucursales
 	Route::get('/sucursal', 'SucursalController@index')->name('sucursal.index');
@@ -61,7 +61,7 @@ Route::get('contactenos', 'HomeController@contactenos')->name('contactenos');
 	Route::get('/salas', 'SalaController@index')->name('salas.index');
 	Route::get('/salas/create', 'SalaController@create')->name('salas.create');
 	Route::post('/salas/store', 'SalaController@store')->name('salas.store');
-	Route::post('/salas/edit/{id}', 'SalaController@edit')->name('salas.edit');
+	Route::get('/salas/edit/{id}', 'SalaController@edit')->name('salas.edit');
 	Route::put('/salas/edit/{id}', 'SalaController@update')->name('salas.update');
 	Route::put('/salas/delete/{id}', 'SalaController@delete')->name('salas.delete');
 
@@ -97,3 +97,4 @@ Route::get('contactenos', 'HomeController@contactenos')->name('contactenos');
 
 // Reportes	
 	// cuantas paciente atiene cada sucursal
+	Route::get('/reportes', 'ReporteController@index')->name('reportes.index');

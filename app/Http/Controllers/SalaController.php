@@ -138,6 +138,10 @@ class SalaController extends Controller
     public function edit($id)
     {
         //
+        $sucursales = Sucursal::all();
+        $salas      = sala::findOrFail($id);
+
+        return view('salas.edit', compact('salas', 'sucursales'));
     }
 
     /**

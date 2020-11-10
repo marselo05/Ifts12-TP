@@ -21,14 +21,6 @@
             @csrf
             @method('PUT')
             <!-- REQUERIMIENTO DEL FORMULARIO -->
-            @error('nombre')
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    El nombre es requerido
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            @enderror 
             
             @if ($errors->has('descripcion'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -45,7 +37,7 @@
                     <label for="nombre">
                         <h6>Nombre de la especialidad</h6>
                     </label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $especialidad->nombre }}">
+                    <input type="text" class="form-control" id="nombre" name="nombre" value="{{ $especialidad->nombre }}" disabled="">
                 </div>
                 <div class="form-group col-md-10">
                     <label for="descripcion">
@@ -79,7 +71,7 @@
             </div>
 
             <!-- PROCESAR CARGA -->
-            <button type="submit" class="btn btn-primary">AGREGAR</button>
+            <button type="submit" class="btn btn-primary">EDITAR</button>
         </form>
     </section>    
 

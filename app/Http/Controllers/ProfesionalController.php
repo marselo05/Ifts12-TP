@@ -98,7 +98,10 @@ class ProfesionalController extends Controller
      */
     public function edit($id)
     {
-        //
+        $profesionales  = Profesinal::find($id);
+        $especialidades = Especialidad::all();
+
+        return view('profesional.edit', compact('profesionales', 'especialidades'));
     }
 
     /**

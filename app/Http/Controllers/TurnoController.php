@@ -28,12 +28,18 @@ class TurnoController extends Controller
         $fechaHoy   = date("Y-m-d");
         $turnos     = Turno::all()
                         ->where('estado', 1)
+                        ->where('tipo_de_orden_id', 0)
+                        ->where('sucursal_id', 1)
                         ->where('fecha', $fechaHoy);
 
         $confirmados   = Turno::all()
-                        ->where('estado', 2)
+                        ->where('estado', 1)
+                        ->where('tipo_de_orden_id', 1)
+                        ->where('sucursal_id', 1)
                         ->where('fecha', $fechaHoy);
 
+
+                        // dd($fechaHoy);
         return view('turnos.index', compact('turnos', 'confirmados'));
     }
 
@@ -41,8 +47,8 @@ class TurnoController extends Controller
     public function confirmarTurno ($id)
     {
         // dd($id);
-        $turnoConfirma               = Turno::find($id);
-        $turnoConfirma->estado       = 2;
+        $turnoConfirma                      = Turno::find($id);
+        $turnoConfirma->tipo_de_orden_id    = 1;
         $turnoConfirma->save();
 
         return back()->with('mensaje', 'El paciente ha sido confirmado');
@@ -212,7 +218,7 @@ class TurnoController extends Controller
         $nuevoTurno->estado = 1;
         $nuevoTurno->save();
 
-        return view('turnos.index');
+        return  redirect()->action('TurnoController@index');;
 
 
     }

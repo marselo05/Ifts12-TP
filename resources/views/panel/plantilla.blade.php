@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="Marcelo Salar" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Dashboard Template · Bootstrap</title>
+    <title>DecandiaSoft</title>
 
 
     <link href="{{ asset('css/fullcalendar/main.css') }}" rel="stylesheet">
@@ -28,8 +28,12 @@
     <link href="{{ asset('css/panel/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('css/panel/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/panel/vanilla-dataTables.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/chartjs/Chart.min.css') }}" rel="stylesheet">
 
     <script src="{{ asset('js/panel/vanilla-dataTables.js') }}"></script>
+
+    <script src="{{ asset('js/chartjs/Chart.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/chartjs/Chart.min.js') }}"></script>
     
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
@@ -40,7 +44,7 @@
 </head>
 <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Clinica IFTS12</a>
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">DecandiaSoft</a>
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -122,7 +126,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('reportes.index') }}">
                                 <span data-feather="layers"></span>
                                 Reportes (Direc)
                             </a>

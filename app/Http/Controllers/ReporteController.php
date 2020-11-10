@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Http\Request;
+
+use App\Turno;
 use App\Especialidad;
 
-class EspecialidadController extends Controller
+class ReporteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +20,9 @@ class EspecialidadController extends Controller
     public function index()
     {
         //
-        $especialidades = Especialidad::all();
+        $turnos = DB::select("SELECT especialidad_nombre, count(*) AS cantidad FROM turnos WHERE sucursal_id = 1 AND YEAR(fecha) = ".date('Y')."  group by especialidad_nombre");
 
-        return view('especialidad.index', compact('especialidades'));
+        return view('reportes.index', compact('turnos'));
     }
 
     /**
@@ -28,7 +33,6 @@ class EspecialidadController extends Controller
     public function create()
     {
         //
-        return view('especialidad.create');
     }
 
     /**
@@ -40,19 +44,6 @@ class EspecialidadController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'nombre' => 'required',
-            'descripcion' => 'required',
-            'estado' => 'required'
-        ]);
-
-        $nuevaEspecialidad                  = new Especialidad();
-        $nuevaEspecialidad->nombre          = $request->nombre;
-        $nuevaEspecialidad->descripcion     = $request->descripcion;
-        $nuevaEspecialidad->estado          = $request->estado;
-        $nuevaEspecialidad->save();
-
-        return back()->with('mensaje', 'Especilidad agregada');
     }
 
     /**
@@ -74,8 +65,7 @@ class EspecialidadController extends Controller
      */
     public function edit($id)
     {
-        $especialidad = Especialidad::findOrFail($id);
-        return view('especialidad.edit', compact('especialidad'));
+        //
     }
 
     /**
@@ -87,19 +77,7 @@ class EspecialidadController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-        $request->validate([
-            'descripcion' => 'required',
-            'estado' => 'required'
-        ]);
-
-        $especialidadActualizada                = Especialidad::find($id);
-        $especialidadActualizada->descripcion   = $request->descripcion;
-        $especialidadActualizada->estado        = $request->estado;
-
-        $especialidadActualizada->save();
-
-        return back()->with('mensaje', 'Especialidad editada!');
+        //
     }
 
     /**
@@ -111,10 +89,5 @@ class EspecialidadController extends Controller
     public function destroy($id)
     {
         //
-        $especialidadEliminada = Especialidad::find($id);
-        $especialidadEliminada->delete();
-
-        return back()->with('mensaje', 'Especialidad eliminada.');
-
     }
 }

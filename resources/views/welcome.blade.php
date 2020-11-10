@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Clínicas - IFTS 12</title>
+        <title>DecandiaSoft</title>
 
         <link rel="stylesheet" href="{{ asset('css/front/bootstrap.min.css') }}">
 
@@ -24,7 +24,6 @@
                         {{-- <a class="nav-link active" href="#">Home</a> --}}
                         <a class="nav-link" href="{{ route('sucursales') }}">Sucursales</a>
                         <a class="nav-link" href="{{ route('nosotros') }}">Nosotros</a>
-                        <a class="nav-link" href="{{ route('contactenos') }}">Contactenos</a>
                     </nav>
                 </div>
             </header>
@@ -52,7 +51,7 @@
 
             <footer class="mastfoot mt-auto">
                 <div class="inner">
-                    <p>Todos los de rechos resevados <a href="#">DecandiaSoft</a>, by <a href="#">IFTS@Grupo5</a>.</p>
+                    <p>Todos los derechos reservados <a href="#">DecandiaSoft</a>, by <a href="#">IFTS@Grupo5</a>.</p>
                 </div>
             </footer>
         </div>

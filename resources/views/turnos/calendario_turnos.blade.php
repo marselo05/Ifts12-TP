@@ -3,7 +3,7 @@
 @section('cuerpo_panel')   
   
     <nav class="d-flex justify-content-between align-items-center">
-        <h2>Turnos asde</h2>
+        <h2>Turnos</h2>
         <ul class="nav nav-pills justify-content-end">
             <li class="nav-item">
             <a class="nav-link btn btn-primary" href="{{ route('turnos.validarEspecialidad') }}" tabindex="-1" aria-disabled="true">Volver</a>

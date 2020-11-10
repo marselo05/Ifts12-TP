@@ -3,7 +3,7 @@
 @section('cuerpo_panel')
     
     <nav class="d-flex justify-content-between align-items-center">
-        <h2>Especialdades</h2>
+        <h2>Especialidades</h2>
         <ul class="nav nav-pills justify-content-end">
             <li class="nav-item">
             <a class="nav-link btn btn-primary" href="{{ route('especialidad.create') }}" tabindex="-1" aria-disabled="true">Agregar nueva especialidad</a>

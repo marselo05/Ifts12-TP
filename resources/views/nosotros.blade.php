@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Clínicas - IFTS 12</title>
+        <title>DecandiaSoft</title>
 
         <link rel="stylesheet" href="{{ asset('css/front/bootstrap.min.css') }}">
 
@@ -24,22 +24,28 @@
                         {{-- <a class="nav-link active" href="#">Home</a> --}}
                         <a class="nav-link" href="{{ route('sucursales') }}">Sucursales</a>
                         <a class="nav-link" href="{{ route('nosotros') }}">Nosotros</a>
-                        <a class="nav-link" href="{{ route('contactenos') }}">Contactenos</a>
                     </nav>
                 </div>
             </header>
-
+            <br>
             <main role="main" class="inner cover">
-                <h1 class="cover-heading">Curar S.A</h1>
-                <p class="lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                <h3 class="cover-heading">Nuestra historia</h3>
+
                 <p class="lead">
-                    <a href="{{ route('login') }}" class="btn btn-lg btn-secondary">Ingresar</a>
+                    La clinica CURAR S.A se destaca por sus logros de vanguardia, por la fundación de la Escuela de Enfermería más antigua del país, y por la alianza con la Universidad de Buenos Aires y con la Universidad Católica Argentina que lo habilitan como Unidad Docente y Hospital Universitario, respectivamente.
+                    <br>
+                    Atiende cerca de 1 millón de pacientes al año; capacita de manera totalmente gratuita a generaciones de enfermeros; y forma decenas de profesionales médicos cada año. Cuenta con más de 2.500 profesionales de la salud y una Red de Atención propia con presencia en la Ciudad de Buenos Aires y el conurbano bonaerense.
+                    <br>
+                    Hoy, sienta las bases de sus próximos logros a través del cumplimiento de estrictos estándares internacionales, en calidad y seguridad al paciente; abordando el desafío de acreditar próximamente por la Joint Commission International, prestigiosa institución que audita el cumplimiento de estrictas normas y procedimientos.
+                    <br>
+                    De esta manera, mira el futuro y proyecta con firmeza sus próximos 175 años. 
                 </p>
+               
             </main>
 
             <footer class="mastfoot mt-auto">
                 <div class="inner">
-                    <p>Todos los de rechos resevados <a href="#">DecandiaSoft</a>, by <a href="#">IFTS@Grupo5</a>.</p>
+                    <p>Todos los derechos reservados <a href="#">DecandiaSoft</a>, by <a href="#">IFTS@Grupo5</a>.</p>
                 </div>
             </footer>
         </div>
